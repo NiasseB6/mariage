@@ -354,3 +354,178 @@
         min-height: 600px;
     }
 }
+
+/* Tablettes et petits écrans */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar-title {
+        font-size: 20px;
+    }
+
+    .sidebar-header {
+        padding: 15px;
+    }
+
+    .sidebar-content {
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .form-group-builder {
+        margin-bottom: 10px;
+    }
+
+    .form-group-builder label {
+        font-size: 12px;
+    }
+
+    .form-group-builder input,
+    .form-group-builder select,
+    .form-group-builder textarea {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .rsvp-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .rsvp-stat-card {
+        padding: 10px 6px;
+    }
+
+    .rsvp-stat-val {
+        font-size: 18px;
+    }
+
+    .rsvp-table {
+        font-size: 11px;
+    }
+
+    .rsvp-table th,
+    .rsvp-table td {
+        padding: 10px;
+    }
+}
+
+/* Petits téléphones */
+@media (max-width: 480px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border-builder);
+    }
+
+    .sidebar-title {
+        font-size: 18px;
+    }
+
+    .sidebar-title span {
+        display: none;
+    }
+
+    .sidebar-header {
+        padding: 12px;
+    }
+
+    .sidebar-content {
+        padding: 12px;
+    }
+
+    .sidebar-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: 12px;
+        font-size: 11px;
+        min-width: 140px;
+    }
+
+    .section-title {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .form-group-builder {
+        margin-bottom: 8px;
+    }
+
+    .form-group-builder label {
+        font-size: 11px;
+    }
+
+    .form-group-builder input,
+    .form-group-builder select,
+    .form-group-builder textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .theme-selector-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px;
+    }
+
+    .theme-preview-dot {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .theme-option-name {
+        font-size: 11px;
+    }
+
+    .btn-premium {
+        padding: 10px 16px;
+        font-size: 11px;
+    }
+
+    .rsvp-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .rsvp-stat-card {
+        padding: 8px;
+    }
+
+    .rsvp-stat-val {
+        font-size: 16px;
+    }
+
+    .rsvp-stat-lbl {
+        font-size: 8px;
+    }
+
+    .rsvp-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .rsvp-table {
+        font-size: 10px;
+        min-width: 100%;
+    }
+
+    .rsvp-table th,
+    .rsvp-table td {
+        padding: 8px 6px;
+    }
+
+    .preview-workspace {
+        min-height: 500px;
+    }
+}

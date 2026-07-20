@@ -636,47 +636,259 @@
    ========================================== */
 @media (max-width: 560px) {
     .invitation-container {
-        padding-top: 30px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .envelope-wrapper {
-        width: 330px;
-        height: 240px;
+        width: 280px;
+        height: 200px;
     }
 
     .envelope-flap {
-        border-left-width: 165px;
-        border-right-width: 165px;
-        border-top-width: 120px;
+        border-left-width: 140px;
+        border-right-width: 140px;
+        border-top-width: 100px;
     }
 
     .envelope-front::before {
-        border-left-width: 165px;
-        border-bottom-width: 120px;
-        border-top-width: 120px;
-        border-right-width: 165px;
+        border-left-width: 140px;
+        border-bottom-width: 100px;
+        border-top-width: 100px;
+        border-right-width: 140px;
     }
 
     .envelope-front::after {
-        border-right-width: 165px;
-        border-bottom-width: 120px;
-        border-top-width: 120px;
-        border-left-width: 165px;
+        border-right-width: 140px;
+        border-bottom-width: 100px;
+        border-top-width: 100px;
+        border-left-width: 140px;
+    }
+
+    .wax-seal {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
     }
 
     .envelope-wrapper.open .invitation-card {
-        top: -160px;
-        left: -15px;
-        width: calc(100% + 30px);
-        height: 580px;
+        top: -100px;
+        left: -10px;
+        width: calc(100% + 20px);
+        height: 520px;
     }
 
     .envelope-wrapper.card-focused {
-        height: 580px;
+        height: 520px;
     }
 
-    .card-title { font-size: 30px; }
-    .card-message { font-size: 12px; }
-    .countdown-box { width: 52px; }
-    .countdown-num { font-size: 16px; }
+    .invitation-card {
+        padding: 20px 15px;
+    }
+
+    .card-content {
+        gap: 8px;
+    }
+
+    .card-header {
+        margin-top: 3px;
+    }
+
+    .card-subtitle {
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin-bottom: 3px;
+    }
+
+    .card-title-container {
+        margin: 3px 0;
+    }
+
+    .card-title { 
+        font-size: 28px;
+        margin: 4px 0;
+    }
+
+    .theme-boho .card-title {
+        font-size: 24px;
+    }
+
+    .card-divider {
+        font-size: 18px;
+    }
+
+    .card-message { 
+        font-size: 11px;
+        line-height: 1.5;
+        margin: 5px 0;
+        max-width: 95%;
+    }
+
+    .card-details {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .detail-item {
+        font-size: 12px;
+        margin: 6px 0;
+        gap: 6px;
+    }
+
+    .detail-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Countdown responsive */
+    .countdown-container {
+        gap: 6px;
+        margin: 8px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .countdown-box {
+        width: 50px;
+        padding: 6px 0;
+    }
+
+    .countdown-num {
+        font-size: 14px;
+    }
+
+    .countdown-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+        margin-top: 2px;
+    }
+
+    /* Boutons responsive */
+    .card-actions {
+        gap: 6px;
+        margin-bottom: 3px;
+    }
+
+    .card-actions .btn-card {
+        width: 90%;
+        max-width: 280px;
+        padding: 8px 12px;
+        font-size: 9px;
+        letter-spacing: 1px;
+        border-radius: 20px;
+    }
+
+    /* Bouton musique responsive */
+    .audio-player-widget {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .btn-music-toggle {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    /* Modal RSVP responsive */
+    .rsvp-modal {
+        width: 95%;
+        max-width: 320px;
+        padding: 20px;
+        max-height: 85vh;
+    }
+
+    .modal-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .rsvp-form {
+        gap: 10px;
+    }
+
+    .form-group label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .form-row {
+        gap: 8px;
+    }
+
+    .btn-submit-rsvp {
+        padding: 10px;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .btn-close-modal {
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+    }
+}
+
+/* Extra small phones (< 360px) */
+@media (max-width: 359px) {
+    .envelope-wrapper {
+        width: 240px;
+        height: 170px;
+    }
+
+    .envelope-flap {
+        border-left-width: 120px;
+        border-right-width: 120px;
+        border-top-width: 85px;
+    }
+
+    .envelope-front::before {
+        border-left-width: 120px;
+        border-bottom-width: 85px;
+        border-top-width: 85px;
+        border-right-width: 120px;
+    }
+
+    .envelope-front::after {
+        border-right-width: 120px;
+        border-bottom-width: 85px;
+        border-top-width: 85px;
+        border-left-width: 120px;
+    }
+
+    .envelope-wrapper.open .invitation-card {
+        height: 480px;
+    }
+
+    .envelope-wrapper.card-focused {
+        height: 480px;
+    }
+
+    .card-title { 
+        font-size: 22px;
+    }
+
+    .card-message { 
+        font-size: 10px;
+    }
+
+    .countdown-box {
+        width: 45px;
+    }
+
+    .countdown-num {
+        font-size: 12px;
+    }
+
+    .card-actions .btn-card {
+        width: 95%;
+        font-size: 8px;
+    }
 }
