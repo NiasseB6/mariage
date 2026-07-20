@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur d'Invitations de Mariage Numériques</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/builder.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- PANNEAU DE CONFIGURATION (GAUCHE) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">
+                    💍 <span>Mariage</span> Éternel
+                </h1>
+            </div>
+
+            <!-- Onglets de navigation -->
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="edit">Personnaliser</button>
+                <button class="tab-btn" data-tab="rsvp">Suivi des RSVPs</button>
+            </div>
+
+            <!-- Contenu défilable -->
+            <div class="sidebar-content">
+                
+                <!-- PANNEAU D'ÉDITION -->
+                <div class="tab-panel" id="tab-edit">
+                    <form class="builder-form" id="builderForm" onsubmit="event.preventDefault();">
+                        
+                        <!-- Section : Thème -->
+                        <div>
+                            <h3 class="section-title">1. Choisir un Thème</h3>
+                            <div class="theme-selector-grid">
+                                <div class="theme-option active" data-theme="luxury">
+                                    <div class="theme-preview-dot" style="background: radial-gradient(circle, #fcf6ba, #bf953f);"></div>
+                                    <div class="theme-option-name">Or & Luxe</div>
+                                </div>
+                                <div class="theme-option" data-theme="boho">
+                                    <div class="theme-preview-dot" style="background: radial-gradient(circle, #c48c75, #9e5b4e);"></div>
+                                    <div class="theme-option-name">Bohème Floral</div>
+                                </div>
+                                <div class="theme-option" data-theme="minimalist">
+                                    <div class="theme-preview-dot" style="background: #111111; border: 1px solid #ffffff;"></div>
+                                    <div class="theme-option-name">Chic Minimaliste</div>
+                                </div>
+                                <div class="theme-option" data-theme="starry">
+                                    <div class="theme-preview-dot" style="background: radial-gradient(circle, #a5b4fc, #060913);"></div>
+                                    <div class="theme-option-name">Nuit Étoilée</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section : Les Mariés -->
+                        <div>
+                            <h3 class="section-title">2. Les Mariés</h3>
+                            <div class="form-group-builder">
+                                <label for="inputBride">Nom du Marié</label>
+                                <input type="text" id="inputBride" value="Mame Diarra Niasse" placeholder="Nom de la mariée">
+                            </div>
+                            <div style="margin-top: 12px;" class="form-group-builder">
+                                <label for="inputGroom"> Nom de la Mariée</label>
+                                <input type="text" id="inputGroom" value="Pathé Gueye" placeholder="Nom du marié">
+                            </div>
+                        </div>
+
+                        <!-- Section : Date & Lieu -->
+                        <div>
+                            <h3 class="section-title">3. Date & Lieu</h3>
+                            <div style="display: flex; gap: 10px;">
+                                <div class="form-group-builder" style="flex: 2;">
+                                    <label for="inputDate">Date du Mariage</label>
+                                    <input type="date" id="inputDate" value="2026-08-22">
+                                </div>
+                                <div class="form-group-builder" style="flex: 1;">
+                                    <label for="inputTime">Heure</label>
+                                    <input type="time" id="inputTime" value="16:00">
+                                </div>
+                            </div>
+                            <div style="margin-top: 12px;" class="form-group-builder">
+                                <label for="inputCeremony">Lieu de la Cérémonie</label>
+                                <input type="text" id="inputCeremony" value="Grande Mosquée de Dakar" placeholder="Ex: Église, Mosquée, Salle de fête">
+                            </div>
+                            <div style="margin-top: 12px;" class="form-group-builder">
+                                <label for="inputReception">Lieu de la Réception</label>
+                                <input type="text" id="inputReception" value="Salle Prestige" placeholder="Ex: Salle de réception, Restaurant">
+                            </div>
+                        </div>
+
+                        <!-- Section : Message d'Invitation -->
+                        <div>
+                            <h3 class="section-title">4. Message d'Invitation</h3>
+                            <div class="form-group-builder">
+                                <label for="inputMessage">Votre Message</label>
+                                <textarea id="inputMessage" rows="4" placeholder="Écrivez un mot chaleureux à vos invités...">Deux cœurs s'unissent pour la vie. Nous sommes ravis de vous inviter à célébrer notre union sacrée devant Dieu et nos proches.</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Section : Ambiance Sonore -->
+                        <div>
+                            <h3 class="section-title">5. Ambiance Sonore</h3>
+                            <div class="form-group-builder">
+                                <label for="selectMusic">Musique de fond</label>
+                                <select id="selectMusic">
+                                    <option value="0">Chanson 1 (Piano Rêverie)</option>
+                                    <option value="1">Chanson 2 (Marche Nuptiale)</option>
+                                    <option value="2">Chanson 3 (Guitare Romantique)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- TABLEAU DE BORD RSVP -->
+                <div class="tab-panel hidden" id="tab-rsvp">
+                    <div class="rsvp-tracker-container">
+                        <h3 class="section-title">Suivi des Invités (RSVP)</h3>
+                        
+                        <!-- Grille de stats rapides -->
+                        <div class="rsvp-stats-grid">
+                            <div class="rsvp-stat-card">
+                                <div class="rsvp-stat-val" id="statTotal">0</div>
+                                <div class="rsvp-stat-lbl">Réponses</div>
+                            </div>
+                            <div class="rsvp-stat-card">
+                                <div class="rsvp-stat-val" id="statYes">0</div>
+                                <div class="rsvp-stat-lbl">Présents</div>
+                            </div>
+                            <div class="rsvp-stat-card">
+                                <div class="rsvp-stat-val" id="statGuests">0</div>
+                                <div class="rsvp-stat-lbl">Total Personnes</div>
+                            </div>
+                        </div>
+
+                        <!-- Tableau des réponses -->
+                        <div class="rsvp-table-wrapper">
+                            <table class="rsvp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invité</th>
+                                        <th>Présence</th>
+                                        <th style="text-align: center;">Nombre</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rsvpTableBody">
+                                    <!-- Inséré par JS -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button id="btnClearRSVPs" class="btn-premium btn-secondary" style="margin-top: 10px; width: 100%; border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                            ⚠️ Effacer l'historique
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Barre d'action fixe en bas -->
+            <div class="sidebar-footer">
+                <button class="btn-premium" id="btnCopyLink">
+                    🔗 Copier le Lien de Partage
+                </button>
+                <button class="btn-premium btn-secondary" id="btnViewExternal">
+                    👁️ Voir Plein Écran (Invité)
+                </button>
+            </div>
+        </aside>
+
+        <!-- ZONE DE PRÉVISUALISATION EN DIRECT (DROITE) -->
+        <main class="preview-workspace">
+            <header class="preview-header">
+                <div class="preview-badge">Aperçu en Direct</div>
+                <div style="font-size: 12px; color: #a1a1aa;">
+                    (Cliquez sur l'enveloppe ci-dessous pour tester l'animation)
+                </div>
+            </header>
+
+            <div class="preview-content">
+                <iframe id="previewIframe" src="invitation.html" style="width: 100%; height: 95%; border: none; border-radius: 8px; box-shadow: var(--shadow-luxury);" title="Live Preview"></iframe>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- JavaScripts -->
+    <script src="js/database.js"></script>
+    <script src="js/builder.js"></script>
+</body>
+</html>

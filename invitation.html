@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation de Mariage</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/card.css">
+</head>
+<body class="theme-luxury preload">
+
+    <!-- Conteneur d'effet spécial (Nuit Étoilée) -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Conteneur principal de l'invitation -->
+    <div class="invitation-container flex-center">
+        
+        <!-- Enveloppe 3D Interactive -->
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope">
+                
+                <!-- Rabat supérieur -->
+                <div class="envelope-flap"></div>
+                
+                <!-- Carte d'invitation (Glisse hors de l'enveloppe) -->
+                <div class="invitation-card" id="invitationCard">
+                    <div class="card-content">
+                        
+                        <!-- En-tête de la carte -->
+                        <div class="card-header">
+                            <div class="ornament-top"></div>
+                            <div class="card-subtitle">Vous êtes invités au mariage de </div>
+                        </div>
+
+                        <!-- Titre (Noms des Mariés) -->
+                        <div class="card-title-container">
+                            <h2 class="card-title serif-font" id="brideName">Mame Diarra Niasse</h2>
+                            <div class="card-divider">&</div>
+                            <h2 class="card-title serif-font" id="groomName">Pathé Gueye</h2>
+                        </div>
+
+                        <!-- Message personnalisé -->
+                        <p class="card-message" id="customMessage">
+                            Deux cœurs s'unissent pour la vie. Nous sommes ravis de vous inviter à célébrer notre union sacrée devant Dieu et nos proches.
+                        </p>
+
+                        <!-- Infos Date, Heure et Lieu -->
+                        <div class="card-details">
+                            <div class="detail-item">
+                                <!-- Icon Horloge SVG -->
+                                <svg class="detail-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span id="dateText">Diamanche 26 Juillet 2026 à 16h00</span>
+                            </div>
+                            <div class="detail-item">
+                                <!-- Icon Cérémonie SVG -->
+                                <svg class="detail-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <div style="display: flex; flex-direction: column; gap: 2px;">
+                                    <span style="font-size: 10px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px;">Cérémonie</span>
+                                    <span id="ceremonyText">Terminus 75 à Malika</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <!-- Icon Réception SVG -->
+                                <svg class="detail-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <div style="display: flex; flex-direction: column; gap: 2px;">
+                                    <span style="font-size: 10px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px;">Réception</span>
+                                    <span id="receptionText">Cité Sonatel</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compte à rebours -->
+                        <div class="countdown-container" id="countdown">
+                            <div class="countdown-box">
+                                <div class="countdown-num" id="cdDays">00</div>
+                                <div class="countdown-label">Jours</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="countdown-num" id="cdHours">00</div>
+                                <div class="countdown-label">Heures</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="countdown-num" id="cdMins">00</div>
+                                <div class="countdown-label">Min</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="countdown-num" id="cdSecs">00</div>
+                                <div class="countdown-label">Sec</div>
+                            </div>
+                        </div>
+
+                        <!-- Boutons d'action -->
+                        <div class="card-actions">
+                            <button class="btn-card" id="btnRSVP">Confirmer ma présence (RSVP)</button>
+                            <div style="display: flex; gap: 10px; width: 80%; max-width: 300px;">
+                                <a href="#" class="btn-card" id="btnCalendar" style="flex: 1; text-align: center; text-decoration: none;">Calendrier</a>
+                                <a href="#" target="_blank" class="btn-card" id="btnMap" style="flex: 1; text-align: center; text-decoration: none;">Localisation</a>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 10px; opacity: 0.5; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+                            Avec Amour
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Devant de l'enveloppe -->
+                <div class="envelope-front"></div>
+                
+                <!-- Sceau en cire avec initiales -->
+                <div class="wax-seal" id="waxSeal">
+                    💍
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Lecteur de musique de fond -->
+    <div class="audio-player-widget">
+        <button class="btn-music-toggle" id="btnMusicToggle" title="Activer/Désactiver la musique">
+            🔇
+        </button>
+    </div>
+
+    <!-- Modal d'inscription RSVP -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="rsvp-modal">
+            <button class="btn-close-modal" id="btnCloseModal">&times;</button>
+            <h3 class="modal-title">Confirmer votre présence</h3>
+            
+            <form class="rsvp-form" id="rsvpForm">
+                <div class="form-group">
+                    <label for="rsvpName">Votre Nom Complet</label>
+                    <input type="text" id="rsvpName" required placeholder="Ex: Moustapha Diop">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rsvpAttending">Serez-vous présent ?</label>
+                        <select id="rsvpAttending" required>
+                            <option value="yes">Oui, avec plaisir</option>
+                            <option value="no">Non, avec regret</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rsvpGuests">Nombre d'invités supp.</label>
+                        <select id="rsvpGuests">
+                            <option value="0">Aucun (+0)</option>
+                            <option value="1">1 personne (+1)</option>
+                            <option value="2">2 personnes (+2)</option>
+                            <option value="3">3 personnes (+3)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rsvpNotes">Message pour les mariés</label>
+                    <textarea id="rsvpNotes" rows="3" placeholder="Félicitations, restrictions alimentaires, etc. (optionnel)"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-rsvp">Envoyer ma réponse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScripts -->
+    <script src="js/database.js"></script>
+    <script src="js/invitation.js"></script>
+</body>
+</html>

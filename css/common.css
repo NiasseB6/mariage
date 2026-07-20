@@ -1,0 +1,154 @@
+/* Import de polices élégantes et modernes depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+    /* Systèmes de couleurs */
+    --color-bg-builder: #1e1e24;
+    --color-panel-builder: #2d2d34;
+    --color-border-builder: #3f3f46;
+    --color-text-builder: #f4f4f5;
+    --color-accent-builder: #e0a96d;
+    --color-accent-hover: #d49553;
+    
+    /* Variables de transition */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Ombres portées premium */
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-luxury: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Réinitialisations de base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-bg-builder);
+    color: var(--color-text-builder);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar élégante */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Typographies premium */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.script-font {
+    font-family: 'Great Vibes', cursive;
+}
+
+.serif-font {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Boutons premium */
+.btn-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #1e1e24;
+    background-color: var(--color-accent-builder);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-premium:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-premium:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--color-border-builder);
+    color: var(--color-text-builder);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-accent-builder);
+}
+
+/* Utilitaires */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations de transition globale */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+    animation: scaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Désactivation des transitions au chargement initial */
+.preload *,
+.preload *::before,
+.preload *::after {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
