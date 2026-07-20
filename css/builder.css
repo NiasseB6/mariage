@@ -6,6 +6,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    position: relative;
 }
 
 /* Panneau de configuration (Gauche) */
@@ -16,25 +17,49 @@
     border-right: 1px solid var(--color-border-builder);
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    z-index: 200;
     flex-shrink: 0;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-header {
-    padding: 25px;
+    padding: 20px 25px;
     border-bottom: 1px solid var(--color-border-builder);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 
 .sidebar-title {
-    font-size: 24px;
+    font-size: 22px;
     color: var(--color-text-builder);
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/* Bouton de fermeture du sidebar (mobile) */
+.btn-sidebar-close {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--color-border-builder);
+    color: var(--color-text-builder);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+.btn-sidebar-close:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--color-accent-builder);
 }
 
 .sidebar-title span {
@@ -232,10 +257,69 @@
 .preview-content {
     flex: 1;
     display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 600px;
+    padding: 20px;
+}
+
+/* Iframe de prévisualisation */
+#previewIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow-luxury);
+    min-height: 600px;
+    flex: 1;
+}
+
+/* Bouton hamburger mobile */
+.btn-mobile-toggle {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 300;
+    background: var(--color-panel-builder);
+    border: 1px solid var(--color-border-builder);
+    color: var(--color-text-builder);
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
-    min-height: 800px;
-    padding: 40px;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition-smooth);
+}
+
+.btn-mobile-toggle:hover {
+    background: var(--color-accent-builder);
+    color: #1e1e24;
+    border-color: var(--color-accent-builder);
+}
+
+/* Hint sous le badge */
+.preview-hint {
+    font-size: 12px;
+    color: #a1a1aa;
+}
+
+/* Overlay sombre pour fermer le sidebar sur mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 150;
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
 }
 
 /* Pied de page du panneau (Actions) */
@@ -332,41 +416,78 @@
     color: #ef4444;
 }
 
-/* Responsivité de l'application */
-@media (max-width: 1024px) {
+/* ==========================================
+   RESPONSIVE - SYSTÈME SLIDE-OVER SIDEBAR
+   ========================================== */
+
+/* Tablettes (≤ 900px) — Sidebar en overlay glissant */
+@media (max-width: 900px) {
+    /* L'app prend tout l'écran */
     .app-container {
-        flex-direction: column;
-        overflow-y: auto;
-        height: auto;
+        position: relative;
+        overflow: hidden;
     }
-    
+
+    /* Sidebar se transforme en panneau glissant par-dessus */
     .sidebar {
-        width: 100%;
-        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(420px, 85vw);
+        height: 100%;
+        z-index: 200;
+        transform: translateX(-100%);
+        box-shadow: none;
     }
-    
+
+    /* Sidebar ouvert */
+    .sidebar.is-open {
+        transform: translateX(0);
+        box-shadow: 6px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Afficher les boutons de toggle */
+    .btn-mobile-toggle {
+        display: flex;
+    }
+
+    .btn-sidebar-close {
+        display: flex;
+    }
+
+    /* La zone de preview prend tout l'espace */
     .preview-workspace {
-        height: auto;
-        min-height: 600px;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
     }
-    
+
+    .preview-header {
+        padding: 15px 20px 15px 70px; /* Laisser la place au bouton hamburger */
+    }
+
     .preview-content {
-        min-height: 600px;
+        padding: 10px;
+        min-height: calc(100vh - 60px);
+    }
+
+    #previewIframe {
+        min-height: calc(100vh - 80px);
     }
 }
 
-/* Tablettes et petits écrans */
+/* Tablettes moyennes (≤ 768px) */
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
+        width: min(380px, 90vw);
     }
 
     .sidebar-title {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .sidebar-header {
-        padding: 15px;
+        padding: 15px 18px;
     }
 
     .sidebar-content {
@@ -378,12 +499,8 @@
         margin-bottom: 12px;
     }
 
-    .form-group-builder {
-        margin-bottom: 10px;
-    }
-
     .form-group-builder label {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .form-group-builder input,
@@ -394,12 +511,8 @@
     }
 
     .rsvp-stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 8px;
-    }
-
-    .rsvp-stat-card {
-        padding: 10px 6px;
     }
 
     .rsvp-stat-val {
@@ -412,47 +525,32 @@
 
     .rsvp-table th,
     .rsvp-table td {
-        padding: 10px;
+        padding: 10px 8px;
     }
 }
 
-/* Petits téléphones */
+/* Petits t\u00e9l\u00e9phones (≤ 480px) */
 @media (max-width: 480px) {
-    .app-container {
-        flex-direction: column;
-    }
-
     .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--color-border-builder);
+        width: 100vw;
     }
 
     .sidebar-title {
-        font-size: 18px;
-    }
-
-    .sidebar-title span {
-        display: none;
+        font-size: 17px;
     }
 
     .sidebar-header {
-        padding: 12px;
+        padding: 12px 15px;
     }
 
     .sidebar-content {
         padding: 12px;
     }
 
-    .sidebar-tabs {
-        flex-wrap: wrap;
-    }
-
     .tab-btn {
-        flex: 1;
-        padding: 12px;
+        padding: 12px 8px;
         font-size: 11px;
-        min-width: 140px;
+        letter-spacing: 0.5px;
     }
 
     .section-title {
@@ -460,29 +558,29 @@
         margin-bottom: 10px;
     }
 
-    .form-group-builder {
-        margin-bottom: 8px;
-    }
-
     .form-group-builder label {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .form-group-builder input,
     .form-group-builder select,
     .form-group-builder textarea {
-        font-size: 12px;
-        padding: 8px;
+        font-size: 13px;
+        padding: 10px;
     }
 
     .theme-selector-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
 
+    .theme-option {
+        padding: 12px 8px;
+    }
+
     .theme-preview-dot {
-        width: 30px !important;
-        height: 30px !important;
+        width: 28px;
+        height: 28px;
     }
 
     .theme-option-name {
@@ -490,17 +588,18 @@
     }
 
     .btn-premium {
-        padding: 10px 16px;
+        padding: 10px 14px;
         font-size: 11px;
+        letter-spacing: 1.5px;
     }
 
     .rsvp-stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 6px;
     }
 
     .rsvp-stat-card {
-        padding: 8px;
+        padding: 8px 4px;
     }
 
     .rsvp-stat-val {
@@ -511,13 +610,9 @@
         font-size: 8px;
     }
 
-    .rsvp-table-wrapper {
-        overflow-x: auto;
-    }
-
     .rsvp-table {
         font-size: 10px;
-        min-width: 100%;
+        min-width: 280px;
     }
 
     .rsvp-table th,
@@ -525,7 +620,31 @@
         padding: 8px 6px;
     }
 
-    .preview-workspace {
-        min-height: 500px;
+    .btn-mobile-toggle {
+        top: 12px;
+        left: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .preview-header {
+        padding: 12px 15px 12px 62px;
+    }
+
+    .preview-hint {
+        display: none;
     }
 }
+
+/* Tr\u00e8s petits t\u00e9l\u00e9phones (≤ 360px) */
+@media (max-width: 360px) {
+    .sidebar-title {
+        font-size: 15px;
+    }
+
+    .sidebar-footer {
+        padding: 15px 12px;
+    }
+}
+

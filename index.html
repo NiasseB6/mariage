@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créateur d'Invitations de Mariage Numériques</title>
+    <meta name="description" content="Créez et personnalisez votre invitation de mariage numérique en temps réel. Choisissez parmi 4 thèmes élégants, ajoutez vos informations et partagez instantanément.">
+    <title>Créateur d'Invitations de Mariage Numériques | Mariage Éternel</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/builder.css">
@@ -13,11 +14,12 @@
     <div class="app-container">
         
         <!-- PANNEAU DE CONFIGURATION (GAUCHE) -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h1 class="sidebar-title">
                     💍 <span>Mariage</span> Éternel
                 </h1>
+                <button class="btn-sidebar-close" id="btnSidebarClose" title="Fermer le panneau">✕</button>
             </div>
 
             <!-- Onglets de navigation -->
@@ -60,11 +62,11 @@
                         <div>
                             <h3 class="section-title">2. Les Mariés</h3>
                             <div class="form-group-builder">
-                                <label for="inputBride">Nom du Marié</label>
+                                <label for="inputBride">Nom de la Mariée</label>
                                 <input type="text" id="inputBride" value="Mame Diarra Niasse" placeholder="Nom de la mariée">
                             </div>
                             <div style="margin-top: 12px;" class="form-group-builder">
-                                <label for="inputGroom"> Nom de la Mariée</label>
+                                <label for="inputGroom">Nom du Marié</label>
                                 <input type="text" id="inputGroom" value="Pathé Gueye" placeholder="Nom du marié">
                             </div>
                         </div>
@@ -175,16 +177,21 @@
         </aside>
 
         <!-- ZONE DE PRÉVISUALISATION EN DIRECT (DROITE) -->
-        <main class="preview-workspace">
+        <main class="preview-workspace" id="previewWorkspace">
+            <!-- Bouton hamburger pour mobile -->
+            <button class="btn-mobile-toggle" id="btnMobileToggle" title="Ouvrir le panneau de configuration">
+                ☰
+            </button>
+
             <header class="preview-header">
                 <div class="preview-badge">Aperçu en Direct</div>
-                <div style="font-size: 12px; color: #a1a1aa;">
+                <div class="preview-hint">
                     (Cliquez sur l'enveloppe ci-dessous pour tester l'animation)
                 </div>
             </header>
 
             <div class="preview-content">
-                <iframe id="previewIframe" src="invitation.html" style="width: 100%; height: 95%; border: none; border-radius: 8px; box-shadow: var(--shadow-luxury);" title="Live Preview"></iframe>
+                <iframe id="previewIframe" src="invitation.html" title="Live Preview"></iframe>
             </div>
         </main>
 

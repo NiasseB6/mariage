@@ -6,6 +6,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     initBuilder();
     setupTabs();
+    setupMobileSidebar();
     loadRSVPDashboard();
 
     // Recharger le tableau de bord si des RSVPs sont soumises dans l'iframe
@@ -233,6 +234,7 @@ function loadRSVPDashboard() {
 
             tableBody.appendChild(tr);
         });
+
     }
 
     // Gérer le bouton d'effacement
@@ -245,6 +247,44 @@ function loadRSVPDashboard() {
             }
         };
     }
+}
+
+/**
+ * Gestion du menu mobile (hamburger toggle).
+ */
+function setupMobileSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const btnOpen = document.getElementById('btnMobileToggle');
+    const btnClose = document.getElementById('btnSidebarClose');
+
+    if (!sidebar || !btnOpen || !btnClose) return;
+
+    // Créer l'overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    overlay.id = 'sidebarOverlay';
+    document.body.appendChild(overlay);
+
+    function openSidebar() {
+        sidebar.classList.add('is-open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('is-open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    btnOpen.addEventListener('click', openSidebar);
+    btnClose.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Fermer avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSidebar();
+    });
 }
 
 /**
